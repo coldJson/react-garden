@@ -1,60 +1,63 @@
 import React from 'react';
-import { Carousel, WingBlank, Button } from 'antd-mobile';
+import { Grid, Carousel } from 'antd-mobile';
+import styles from './home.module.less';
 
+// 菜单数据
+const girdData = [
+  {
+    text: 'CANVAS'
+  },
+  {
+    text: 'WEBGL'
+  },
+  {
+    text: 'TOOLS'
+  },
+  {
+    text: 'menu4'
+  },
+  {
+    text: 'menu5'
+  },
+  {
+    text: 'menu6'
+  },
+  {
+    text: 'menu7'
+  },
+  {
+    text: 'menu8'
+  },
+  {
+    text: 'menu9'
+  }
+];
+
+// 跑马灯item
+const carouselData = ['javascript', 'python', 'golang'];
 class Homepage extends React.Component {
+
   constructor() {
     super();
     this.state = {
-      data: ['1', '2', '3'],
-      imgHeight: 176
+      test: 5 
     }
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI']
-      });
-    }, 100);
   }
 
   render() {
-    const componentStyle = {
-      grid: {
-        marginTop: '20px'
-      }
-    }
-
+    const crouselItems = carouselData.map((v, i) => 
+      <div key={i}>{v}</div>
+    )
     return (
-      <div className="home">
-        <WingBlank>
-          <Carousel
-            autoplay={false}
-            infinite
-            beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-            afterChange={index => console.log('slide to', index)}
-          >
-            {this.state.data.map(val => (
-              <a
-                key={val}
-                href="http://www.alipay.com"
-                style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
-              >
-                <img
-                  src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
-                  alt=""
-                  style={{ width: '100%', verticalAlign: 'top' }}
-                  onLoad={() => {
-                    // fire window resize event to change height
-                    window.dispatchEvent(new Event('resize'));
-                    this.setState({ imgHeight: 'auto' });
-                  }}
-                />
-              </a>
-            ))}
+      <div className={styles.main}>
+        <div className={styles.banner}>
+          <Carousel infinite autoplay>
+            {crouselItems}
           </Carousel>
-        </WingBlank>
-        <Button type="primary">primary</Button>
+        </div>
+        <div className={styles.gridMenu}>
+          <Grid data={girdData} columnNum={3}></Grid>
+        </div>
       </div>
     )
   }
