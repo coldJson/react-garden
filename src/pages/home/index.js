@@ -14,7 +14,7 @@ const girdData = [
     text: 'TOOLS'
   },
   {
-    text: 'menu4'
+    text: 'GOBANG'
   },
   {
     text: 'menu5'
@@ -43,6 +43,8 @@ class Homepage extends React.Component {
       test: 5 
     }
   }
+
+  
 
   render() {
     const crouselItems = carouselData.map((v, i) => 
