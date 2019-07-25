@@ -132,7 +132,7 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.11.0",
-    "flow-bin": "^0.98.1",
+    "classnames": "^2.2.6",
     "vconsole-webpack-plugin": "^1.4.2",
     "yargs": "^13.2.4"
   }

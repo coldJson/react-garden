@@ -11,10 +11,12 @@ const girdData = [
     text: 'WEBGL'
   },
   {
-    text: 'TOOLS'
+    text: 'TOOLS',
+    url: '/tools'
   },
   {
-    text: 'GOBANG'
+    text: 'GOBANG',
+    url: '/gobang'
   },
   {
     text: 'menu5'
@@ -58,7 +60,12 @@ class Homepage extends React.Component {
           </Carousel>
         </div>
         <div className={styles.gridMenu}>
-          <Grid data={girdData} columnNum={3}></Grid>
+          <Grid data={girdData} columnNum={3} 
+            onClick={(el) => {
+              if (el.url) {
+                this.props.history.push(el.url);
+              }
+            }}></Grid>
         </div>
       </div>
     )

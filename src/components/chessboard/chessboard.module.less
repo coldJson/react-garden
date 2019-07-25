@@ -1,0 +1,100 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.visualBoard {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: #F7B681;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 15px #F7B681;
+}
+
+.centerMark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #333333;
+}
+
+.realBoard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.rows {
+  box-sizing: border-box;
+  flex-grow: 1;
+  border-top: 1px solid #333333;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.cubeRows {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.rows:last-of-type {
+  border-bottom: 1px solid #333333;
+}
+
+.columns {
+  box-sizing: border-box;
+  flex-grow: 1;
+  border-left: 1px solid #333333;
+  &:last-of-type {
+    border-right: 1px solid #333333;
+  }
+}
+
+.cubeColumns {
+  flex-grow: 1;
+  cursor: pointer;
+  position: relative;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chessPiece {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: transparent;
+  &-black {
+    background-color: #333333;
+  }
+  &-white {
+    background-color: #FFFFFF;
+  }
+}
