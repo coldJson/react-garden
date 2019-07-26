@@ -78,7 +78,7 @@ module.exports = function (webpackEnv) {
   const env = getClientEnvironment(publicUrl);
 
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions = {}) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -118,10 +118,12 @@ module.exports = function (webpackEnv) {
       },
     ].filter(Boolean);
     if (preProcessor) {
+      // 对css预处理器：less、scss等的配置获取
       loaders.push({
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
+          ...preProcessorOptions
         },
       });
     }
@@ -475,7 +477,10 @@ module.exports = function (webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'less-loader'
+                'less-loader',
+                {
+                  javascriptEnabled: true
+                }
               ),
               sideEffects: true,
             },
@@ -488,7 +493,10 @@ module.exports = function (webpackEnv) {
                   modules: true,
                   getLocalIdent: getCSSModuleLocalIdent,
                 },
-                'less-loader'
+                'less-loader',
+                {
+                  javascriptEnabled: true
+                }
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.

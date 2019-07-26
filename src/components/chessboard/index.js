@@ -13,6 +13,7 @@ class Chessboard extends React.Component {
       gameStatus: []
     };
     this.setChessPos = this.setChessPos.bind(this);
+    this.clearBoard = this.clearBoard.bind(this);
   }
 
   componentDidMount() {
@@ -24,23 +25,44 @@ class Chessboard extends React.Component {
 
   // TODO: 落子
   setChessPos(e) {
-    this.paintChessPieces(e);
-    this.props.onStepOver();
+    const currentStatus = this.state.gameStatus;
+    const currentStep = `${e.target.dataset.row},${e.target.dataset.column}`;
+    if (!currentStatus.includes(currentStep)) {
+      currentStatus.push(currentStep);
+      this.setState({
+        gameStatus: currentStatus
+      });
+      this.paintChessPieces(e);
+      this.props.onStepOver(e.target.dataset);
+    } else {
+      // TODO: 提示位置不可选
+    }
   }
 
-  // TODO: 绘制棋子
+  // 绘制棋子
   paintChessPieces(e) {
     const element = e.target;
     element.style.backgroundColor = this.props.currentPlayer ? this.manMap[1] : this.manMap[0];
   }
 
+  // 清空棋盘
+  clearBoard() {
+    this.setState({
+      gameStatus: []
+    });
+    const chessPieceDoms = document.querySelectorAll('div[class*="chessPiece"]');
+    chessPieceDoms.forEach((el) => {
+      el.style.backgroundColor = 'transparent';
+    });
+  }
+
   render() {
     const lineNumbers = [];
-    for (let i = 1; i < this.props.lineNumber; i++) {
+    for (let i = 0; i < this.props.lineNumber - 1; i++) {
       lineNumbers.push(i);
     }
 
-    const chessCubes = lineNumbers.concat([this.props.lineNumber + 1]);
+    const chessCubes = lineNumbers.concat([this.props.lineNumber]);
 
     return (
       <div className={styles.wrapper}>
@@ -55,11 +77,11 @@ class Chessboard extends React.Component {
           <span className={styles.centerMark}></span>
         </div>
         <div className={styles.realBoard} ref={this.realBoard}>
-          {chessCubes.map((number) =>
-            <div className={styles.cubeRows} key={number.toString()}>
-              {chessCubes.map((number) =>
-                <div className={styles.cubeColumns} key={number.toString()}>
-                  <div className={styles.chessPiece} onClick={this.setChessPos}></div>
+          {chessCubes.map((row) =>
+            <div className={styles.cubeRows} key={row.toString()}>
+              {chessCubes.map((column) =>
+                <div className={styles.cubeColumns} key={column.toString()}>
+                  <div className={styles.chessPiece} onClick={this.setChessPos} data-row={row} data-column={column}></div>
                 </div>
               )}
             </div>
