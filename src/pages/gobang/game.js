@@ -90,8 +90,10 @@ class GobangGame extends React.Component {
   }
 
   showResult() {
-    Modal.alert('恭喜恭喜！', `${this.state.whitePlayer ? '白方' : '黑方'}获胜！`, [
-      { text: '结束游戏', onPress: () => {}},
+    Modal.alert('恭喜，恭喜', `${this.state.whitePlayer ? '白方' : '黑方'}获胜！`, [
+      { text: '结束游戏', onPress: () => {
+        this.props.onEnd();
+      }},
       { text: '再来一局', onPress: () => {
         this.startGame();
         this.board.current.clearBoard();

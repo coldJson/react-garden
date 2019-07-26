@@ -20,7 +20,11 @@
   flex-direction: column;
   flex-wrap: nowrap;
   box-sizing: border-box;
-  box-shadow: 0 0 0 15px #F7B681;
+  box-shadow: 0 0 0 15px #F7B681, 
+              15px 15px 2px 1px #333333,
+              15px -15px 2px 1px #333333,
+              -15px 15px 2px 1px #333333,
+              -15px -15px 2px 1px #333333;
 }
 
 .centerMark {
@@ -71,6 +75,7 @@
   box-sizing: border-box;
   flex-grow: 1;
   border-left: 1px solid #333333;
+
   &:last-of-type {
     border-right: 1px solid #333333;
   }
@@ -91,9 +96,11 @@
   height: 80%;
   border-radius: 50%;
   background-color: transparent;
+
   &-black {
     background-color: #333333;
   }
+
   &-white {
     background-color: #FFFFFF;
   }
