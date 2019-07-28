@@ -42,15 +42,15 @@ class Homepage extends React.Component {
   constructor() {
     super();
     this.state = {
-      test: 5 
+      test: 5
     }
   }
 
-  
+
 
   render() {
-    const crouselItems = carouselData.map((v, i) => 
-      <div key={i}>{v}</div>
+    const crouselItems = carouselData.map((v, i) =>
+      <img src={require(`../../static/img/${v}.jpeg`)} alt={v} key={i}></img>
     )
     return (
       <div className={styles.main}>
@@ -60,7 +60,7 @@ class Homepage extends React.Component {
           </Carousel>
         </div>
         <div className={styles.gridMenu}>
-          <Grid data={girdData} columnNum={3} 
+          <Grid data={girdData} columnNum={3}
             onClick={(el) => {
               if (el.url) {
                 this.props.history.push(el.url);
