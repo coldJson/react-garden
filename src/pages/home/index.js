@@ -36,7 +36,7 @@ const girdData = [
 ];
 
 // 跑马灯item
-const carouselData = ['javascript', 'python', 'golang'];
+const imgUrls = ['python', 'golang', 'javascript'];
 class Homepage extends React.Component {
 
   constructor() {
@@ -49,8 +49,8 @@ class Homepage extends React.Component {
   
 
   render() {
-    const crouselItems = carouselData.map((v, i) => 
-      <div key={i}>{v}</div>
+    const crouselItems = imgUrls.map((v, i) => 
+      <img key={i} src={require(`src/static/img/${v}.jpg`)} alt={v} />
     )
     return (
       <div className={styles.main}>

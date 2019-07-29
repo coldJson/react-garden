@@ -2,6 +2,7 @@ import React from 'react';
 import Chessboard from 'comp/chessboard';
 import { generateSquare, hasSomeInLine } from 'comp/utils/chessUtil';
 import { Modal } from 'antd-mobile';
+import styles from './index.module.less';
 
 class GobangGame extends React.Component {
 
@@ -91,13 +92,17 @@ class GobangGame extends React.Component {
 
   showResult() {
     Modal.alert('恭喜，恭喜', `${this.state.whitePlayer ? '白方' : '黑方'}获胜！`, [
-      { text: '结束游戏', onPress: () => {
-        this.props.onEnd();
-      }},
-      { text: '再来一局', onPress: () => {
-        this.startGame();
-        this.board.current.clearBoard();
-      }}
+      {
+        text: '结束游戏', onPress: () => {
+          this.props.onEnd();
+        }
+      },
+      {
+        text: '再来一局', onPress: () => {
+          this.startGame();
+          this.board.current.clearBoard();
+        }
+      }
     ])
   }
 
@@ -109,8 +114,12 @@ class GobangGame extends React.Component {
   }
 
   render() {
+    const playerName = this.state.whitePlayer ? '白方' : '黑方';
     return (
-      <Chessboard lineNumber={15} onStepOver={this.finishStep} currentPlayer={this.state.whitePlayer} ref={this.board}></Chessboard>
+      <div>
+        <div className={styles.gameTip}>{playerName}请落子</div>
+        <Chessboard lineNumber={15} onStepOver={this.finishStep} currentPlayer={this.state.whitePlayer} ref={this.board}></Chessboard>
+      </div>
     )
   }
 }
